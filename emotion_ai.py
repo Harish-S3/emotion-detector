@@ -129,18 +129,7 @@ class ProfessionalEmotionAI:
             }
         }
         
-      
-        # Results Container
-        results_container = ttk.Frame(main_container)
-        results_container.pack(fill=tk.BOTH, expand=True)
-        
-        # Emotion Diagnosis
-        emotion_frame = ttk.LabelFrame(results_container, text=" Emotional Diagnosis ")
-        emotion_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 10))
-        
-        self.emotion_text = tk.StringVar(value="Your emotional state will appear here")
-        ttk.Label(emotion_frame, textvariable=self.emotion_text, 
-                   # Train emotion vectors
+        # Train emotion vectors
         all_text = []
         for emotion, data in self.emotion_map.items():
             all_text.extend(data['keywords'])
@@ -199,7 +188,18 @@ class ProfessionalEmotionAI:
         self.ax = self.figure.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.figure, viz_frame)
         self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-        font=("Segoe UI", 11), wraplength=350, justify="center").pack(pady=15, padx=10)
+        
+        # Results Container
+        results_container = ttk.Frame(main_container)
+        results_container.pack(fill=tk.BOTH, expand=True)
+        
+        # Emotion Diagnosis
+        emotion_frame = ttk.LabelFrame(results_container, text=" Emotional Diagnosis ")
+        emotion_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 10))
+        
+        self.emotion_text = tk.StringVar(value="Your emotional state will appear here")
+        ttk.Label(emotion_frame, textvariable=self.emotion_text, 
+                 font=("Segoe UI", 11), wraplength=350, justify="center").pack(pady=15, padx=10)
         
         # AI Wisdom
         wisdom_frame = ttk.LabelFrame(results_container, text=" AI-Generated Wisdom ")
